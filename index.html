@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Math Calculation Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <h1>Math Game</h1>
+            <div class="difficulty-selection">
+                <button class="diff-btn" data-diff="plus_minus">Plus & Minus</button>
+                <button class="diff-btn" data-diff="multiply_beginner">Multiply Beginner</button>
+                <button class="diff-btn" data-diff="multiply_advanced">Multiply Advanced</button>
+            </div>
+            <button id="btn-settings" class="secondary-btn" style="margin-top: 1rem;">Settings</button>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="screen">
+            <h2>Settings</h2>
+            <div class="settings-container">
+                <label for="delay-input">Transition Delay (ms):</label>
+                <input type="number" id="delay-input" value="400" min="0" max="2000" step="100">
+            </div>
+            <button id="btn-save-settings" style="margin-top: 2rem;">Save & Back</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="header">
+                <div class="stat">Score: <span id="score">0</span></div>
+                <div class="stat">Streak: <span id="streak">0</span></div>
+                <button id="btn-stop" class="stop-btn">Stop Game</button>
+            </div>
+            <div class="question-container">
+                <span id="question"></span>
+            </div>
+            <div class="choices-container">
+                <button class="choice-btn" id="choice-0"></button>
+                <button class="choice-btn" id="choice-1"></button>
+                <button class="choice-btn" id="choice-2"></button>
+                <button class="choice-btn" id="choice-3"></button>
+            </div>
+        </div>
+
+        <!-- Analysis Screen -->
+        <div id="analysis-screen" class="screen">
+            <h2>Analysis Board</h2>
+            <div class="results" style="margin-bottom: 1rem;">
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Highest Streak: <span id="highest-streak">0</span></p>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #333;">Most Wrong Answers</h3>
+            <div class="analysis-list" id="analysis-list">
+                <!-- Javascript will populate this -->
+            </div>
+            <button id="btn-restart" style="margin-top: 2rem;">Main Menu</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
