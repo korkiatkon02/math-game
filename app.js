@@ -132,7 +132,7 @@ function populateAnalysis() {
     wrongProblems.sort((a, b) => b.wrongCount - a.wrongCount);
     
     if (wrongProblems.length === 0) {
-        elements.analysisList.innerHTML = '<div style="text-align:center; padding:1rem; color:#4CAF50;">Perfect run! No mistakes made.</div>';
+        elements.analysisList.innerHTML = '<div class="analysis-empty">PERFECT RUN — NO MISTAKES MADE</div>';
         return;
     }
     
@@ -141,7 +141,7 @@ function populateAnalysis() {
         item.className = 'analysis-item';
         item.innerHTML = `
             <span class="problem">${p.question} = ${p.answer}</span>
-            <span class="stats">Wrong: ${p.wrongCount} time(s)</span>
+            <span class="stats">${p.wrongCount} WRONG</span>
         `;
         elements.analysisList.appendChild(item);
     });

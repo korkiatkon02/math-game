@@ -32,7 +32,7 @@
             <div class="table-wrapper">
                 <table id="multiplication-table"></table>
             </div>
-            <button id="btn-back-study" class="secondary-btn" style="margin-top: 0.5rem;">Back to Menu</button>
+            <button id="btn-back-study" class="secondary-btn">Back to Menu</button>
         </div>
 
         <!-- Settings Screen -->
@@ -41,8 +41,8 @@
             <div class="settings-container">
                 <label for="delay-input">Transition Delay (ms):</label>
                 <input type="number" id="delay-input" value="400" min="0" max="2000" step="100">
+                <button id="btn-save-settings">Save & Back</button>
             </div>
-            <button id="btn-save-settings" style="margin-top: 2rem;">Save & Back</button>
         </div>
 
         <!-- Game Screen -->
@@ -66,15 +66,21 @@
         <!-- Analysis Screen -->
         <div id="analysis-screen" class="screen">
             <h2>Analysis Board</h2>
-            <div class="results" style="margin-bottom: 1rem;">
-                <p>Final Score: <span id="final-score">0</span></p>
-                <p>Highest Streak: <span id="highest-streak">0</span></p>
+            <div class="analysis-results-card">
+                <div class="analysis-stat-item">
+                    <div class="analysis-stat-label">Final Score</div>
+                    <div class="analysis-stat-val" id="final-score">0</div>
+                </div>
+                <div class="analysis-stat-item">
+                    <div class="analysis-stat-label">Highest Streak</div>
+                    <div class="analysis-stat-val" id="highest-streak">0</div>
+                </div>
             </div>
-            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #333;">Most Wrong Answers</h3>
+            <h3 class="analysis-section-title">Most Wrong Answers</h3>
             <div class="analysis-list" id="analysis-list">
                 <!-- Javascript will populate this -->
             </div>
-            <div class="menu-actions" style="margin-top: 1.5rem; width: 100%; max-width: 300px;">
+            <div class="menu-actions">
                 <button id="btn-restart">Play Again</button>
                 <button id="btn-study-analysis" class="secondary-btn">Study Table</button>
             </div>
