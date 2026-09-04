@@ -70,6 +70,13 @@ document.getElementById('btn-back-study').addEventListener('click', () => {
     showScreen('start');
 });
 
+const btnBackStudyTop = document.getElementById('btn-back-study-top');
+if (btnBackStudyTop) {
+    btnBackStudyTop.addEventListener('click', () => {
+        showScreen('start');
+    });
+}
+
 const btnStudyAnalysis = document.getElementById('btn-study-analysis');
 if (btnStudyAnalysis) {
     btnStudyAnalysis.addEventListener('click', () => {
