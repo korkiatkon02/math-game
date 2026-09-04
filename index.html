@@ -16,7 +16,23 @@
                 <button class="diff-btn" data-diff="multiply_beginner">Multiply Beginner</button>
                 <button class="diff-btn" data-diff="multiply_advanced">Multiply Advanced</button>
             </div>
-            <button id="btn-settings" class="secondary-btn" style="margin-top: 1rem;">Settings</button>
+            <div class="menu-actions">
+                <button id="btn-study" class="secondary-btn">Multiplication Table</button>
+                <button id="btn-settings" class="secondary-btn">Settings</button>
+            </div>
+        </div>
+
+        <!-- Study Screen -->
+        <div id="study-screen" class="screen">
+            <div class="study-header">
+                <h2>Multiplication Table</h2>
+                <p class="study-subtitle">1–20 × 1–12 (Tap or hover cell to inspect)</p>
+            </div>
+            <div id="study-inspect-badge" class="study-inspect-badge">1 × 1 = 1</div>
+            <div class="table-wrapper">
+                <table id="multiplication-table"></table>
+            </div>
+            <button id="btn-back-study" class="secondary-btn" style="margin-top: 0.5rem;">Back to Menu</button>
         </div>
 
         <!-- Settings Screen -->
@@ -58,7 +74,10 @@
             <div class="analysis-list" id="analysis-list">
                 <!-- Javascript will populate this -->
             </div>
-            <button id="btn-restart" style="margin-top: 2rem;">Main Menu</button>
+            <div class="menu-actions" style="margin-top: 1.5rem; width: 100%; max-width: 300px;">
+                <button id="btn-restart">Play Again</button>
+                <button id="btn-study-analysis" class="secondary-btn">Study Table</button>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>

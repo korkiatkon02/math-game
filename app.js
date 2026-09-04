@@ -1,5 +1,6 @@
 const screens = {
     start: document.getElementById('start-screen'),
+    study: document.getElementById('study-screen'),
     settings: document.getElementById('settings-screen'),
     game: document.getElementById('game-screen'),
     analysis: document.getElementById('analysis-screen')
@@ -13,6 +14,8 @@ const elements = {
     highestStreak: document.getElementById('highest-streak'),
     analysisList: document.getElementById('analysis-list'),
     delayInput: document.getElementById('delay-input'),
+    table: document.getElementById('multiplication-table'),
+    inspectBadge: document.getElementById('study-inspect-badge'),
     choiceBtns: [
         document.getElementById('choice-0'),
         document.getElementById('choice-1'),
@@ -39,6 +42,14 @@ let gameState = {
 
 // UI Navigation
 function showScreen(screenName) {
+    const container = document.querySelector('.container');
+    if (container) {
+        if (screenName === 'study') {
+            container.classList.add('wide');
+        } else {
+            container.classList.remove('wide');
+        }
+    }
     Object.values(screens).forEach(s => s.classList.remove('active'));
     screens[screenName].classList.add('active');
 }
@@ -50,6 +61,21 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
         startGame();
     });
 });
+
+document.getElementById('btn-study').addEventListener('click', () => {
+    showScreen('study');
+});
+
+document.getElementById('btn-back-study').addEventListener('click', () => {
+    showScreen('start');
+});
+
+const btnStudyAnalysis = document.getElementById('btn-study-analysis');
+if (btnStudyAnalysis) {
+    btnStudyAnalysis.addEventListener('click', () => {
+        showScreen('study');
+    });
+}
 
 document.getElementById('btn-settings').addEventListener('click', () => {
     elements.delayInput.value = appSettings.transitionDelay;
@@ -270,3 +296,54 @@ function checkAnswer(selectedAnswer, btnElement) {
         gameState.isProcessing = false;
     }, appSettings.transitionDelay);
 }
+
+// Multiplication Table Generator
+function initMultiplicationTable() {
+    if (!elements.table) return;
+
+    let theadHtml = '<thead><tr><th>Multiple</th>';
+    for (let c = 1; c <= 12; c++) {
+        theadHtml += `<th id="th-col-${c}">${c}</th>`;
+    }
+    theadHtml += '</tr></thead>';
+
+    let tbodyHtml = '<tbody>';
+    for (let r = 1; r <= 20; r++) {
+        tbodyHtml += `<tr><th id="th-row-${r}">${r}</th>`;
+        for (let c = 1; c <= 12; c++) {
+            const product = r * c;
+            tbodyHtml += `<td data-row="${r}" data-col="${c}" data-product="${product}">${product}</td>`;
+        }
+        tbodyHtml += '</tr>';
+    }
+    tbodyHtml += '</tbody>';
+
+    elements.table.innerHTML = theadHtml + tbodyHtml;
+
+    function highlightCell(td) {
+        const row = td.dataset.row;
+        const col = td.dataset.col;
+        const prod = td.dataset.product;
+
+        elements.table.querySelectorAll('.active-cell').forEach(el => el.classList.remove('active-cell'));
+        elements.table.querySelectorAll('.active-header').forEach(el => el.classList.remove('active-header'));
+
+        td.classList.add('active-cell');
+        const rowTh = document.getElementById(`th-row-${row}`);
+        const colTh = document.getElementById(`th-col-${col}`);
+        if (rowTh) rowTh.classList.add('active-header');
+        if (colTh) colTh.classList.add('active-header');
+
+        if (elements.inspectBadge) {
+            elements.inspectBadge.textContent = `${row} × ${col} = ${prod}`;
+        }
+    }
+
+    elements.table.querySelectorAll('td').forEach(td => {
+        td.addEventListener('pointerenter', () => highlightCell(td));
+        td.addEventListener('click', () => highlightCell(td));
+    });
+}
+
+// Initialize Table on Startup
+initMultiplicationTable();
